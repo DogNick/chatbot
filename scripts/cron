@@ -1,0 +1,3 @@
+# Clean old bot-detail-log periodically 
+SHELL=/bin/bash
+00 03 * * 0 root /search/odin/chatbot/trunk/scripts/clean_log_detail.sh

@@ -1,0 +1,87 @@
+#!/usr/bin/expect
+set timeout 1000000
+set node [lindex $argv 0]
+set password [lindex $argv 1]
+set dest_dir "/search/odin"
+set online_package_dir "/search/odin/Packages"
+
+#spawn scp -r $online_package_dir/pip-9.0.1.tar.gz $node:$dest_dir
+#expect {
+#    "yes/no" { 
+#        send "yes\n" 
+#        expect { "*password*" { send "$password\n" } }
+#    }
+#    "*password*" { send "$password\n"}
+#}
+#expect "]#"
+
+spawn ssh $node
+expect {
+    "yes/no" { 
+        send "yes\n" 
+        expect { "*password*" { send "$password\n" } }
+    }
+    "*password*" { send "$password\n" }
+    "]#" { send "ls\n" } 
+}
+expect "]#"
+
+################# pip ######################
+#send "cd $dest_dir\n"
+#expect "]#" 
+#send "tar -xvf pip*.tar*\n"
+#expect "]#"
+#send "yum install python-devel\n"
+#expect {
+#    "y/d/N]" { 
+#        send "y\n" 
+#        expect "]#"
+#        send "cd ./pip-9.0.1\n"
+#    }
+#
+#    "y/N]" { 
+#        send "y\n" 
+#        expect "]#"
+#        send "cd ./pip-9.0.1\n"
+#    }
+#    "]#" { send "cd ./pip-9.0.1\n" }
+#}
+#expect "]#"
+#send "python setup.py build\n"
+#expect "]#"
+#send "python setup.py install\n"
+#expect "]#"
+
+
+################## chatbot #####################3
+#send "cd $dest_dir\n"
+#expect "]#"
+#
+#send "svn co http://svn.sogou-inc.com/svn/websearch4/web/dialogue/chatbot\n"
+#expect {
+#	"Username:" {
+#		send "lihangyu\n"
+#		expect {"\'lihangyu\':" { send "Liaowei131\n" } }
+#	}	
+#	"\'lihangyu\':" { send "Liaowei131\n" }
+#	"\'zhaohaizhou\':" { 
+#		send "\n"
+#		expect "Username:"
+#		send "lihangyu\n"
+#		expect "Password for \'lihangyu\':" 
+#		send "Liaowei131\n"
+#	}
+#	"\'root\':" { 
+#		send "\n"
+#		expect "Username:"
+#		send "lihangyu\n"
+#		expect "Password for \'lihangyu\':" 
+#		send "Liaowei131\n"
+#	}
+#	"Show all" { send "tc\n" }
+#}
+#expect "]#"
+send "cd $dest_dir/chatbot/trunk\n"
+expect "]#"
+send "sh README\n"
+expect "]#"

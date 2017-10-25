@@ -1,0 +1,81 @@
+#!/usr/bin/expect
+set timeout 100000
+set password "chatbot@2017online"
+
+#spawn ssh root@10.153.50.138
+#expect {
+#"yes/no" { 
+#     send "yes\n" 
+#     expect { "*password*" { send "$password\n" } }
+#   }
+#    "*password*" { send "$password\n" }
+#}
+#expect "]#" 
+#
+#send "cd /search/odin/doge/data/match_poem\n"
+#expect "]#" 
+#send "git pull\n"
+#expect "]#" 
+#send "cd /search/odin/doge/vserver\n"
+#expect "]#" 
+#send "sh restart.sh\n"
+#expect "]#" 
+
+
+spawn ssh root@10.153.52.159
+expect {
+"yes/no" { 
+     send "yes\n" 
+     expect { "*password*" { send "$password\n" } }
+   }
+    "*password*" { send "$password\n" }
+}
+expect "]#"
+
+send "cd /search/odin/doge/data/match_poem\n"
+expect "]#" 
+send "git pull\n"
+expect "]#" 
+send "cd /search/odin/doge/vserver\n"
+expect "]#" 
+send "sh restart.sh\n"
+expect "]#" 
+
+spawn ssh root@10.153.53.133
+expect {
+"yes/no" { 
+     send "yes\n" 
+     expect { "*password*" { send "$password\n" } }
+   }
+    "*password*" { send "$password\n" }
+}
+expect "]#" 
+
+send "cd /search/odin/doge/data/match_poem\n"
+expect "]#" 
+send "git pull\n"
+expect "]#" 
+send "cd /search/odin/doge/vserver\n"
+expect "]#" 
+send "sh restart.sh\n"
+expect "]#" 
+
+spawn ssh root@10.153.54.136
+expect {
+"yes/no" { 
+     send "yes\n" 
+     expect { "*password*" { send "$password\n" } }
+   }
+    "*password*" { send "$password\n" }
+}
+expect "]#" 
+
+send "cd /search/odin/doge/data/match_poem\n"
+expect "]#" 
+send "git pull\n"
+expect "]#" 
+send "cd /search/odin/doge/vserver\n"
+expect "]#" 
+send "sh restart.sh\n"
+expect "]#" 
+#
